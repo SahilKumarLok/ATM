@@ -1,44 +1,52 @@
+#! /usr/bin/env node 
 import inquirer from "inquirer";
-let mybalance = 10000;
-let mypin = 1234;
+// Initialize user balance and pin code
+let myBalance = 10000;
+let myPinCode = 12345;
+// Print welcome message
+console.log("welcome");
 let pinAnswer = await inquirer.prompt([
     {
         name: "pin",
         type: "number",
-        message: "enter your pin : ",
-    }
+        message: "Enter your pin code: ",
+    },
 ]);
-if (pinAnswer.pin === mypin) {
-    console.log("your pin is correct");
+if (pinAnswer.pin === myPinCode) {
+    console.log("Pin is correct, Login Successfully! ");
+    console.log(`Current Account Balance: ${myBalance}`);
     let operationAns = await inquirer.prompt([
         {
             name: "operation",
             type: "list",
-            message: "please select option",
+            message: "Enter your operation: ",
             choices: [
-                "deposit",
-                "withdraw",
-                "check your balance"
-            ]
-        }
+                "Check Amount",
+                "withdraw Amount",
+            ],
+        },
     ]);
-    if (operationAns.operation === "withdraw") {
-        let amountANS = await inquirer.prompt([
+    if (operationAns.operation === "withdraw Amount") {
+        let amountAns = await inquirer.prompt([
             {
                 name: "amount",
-                message: "enter your amount",
                 type: "number",
-            }
+                message: "Enter your amount: ",
+            },
         ]);
-        if (amountANS.amount > mybalance) {
-            console.log("Insufficient balance");
+        if (amountAns.amount > myBalance) {
+            console.log("Insufficient Balance ");
         }
         else {
-            mybalance -= amountANS.amount;
-            console.log("your remaining balance is " + mybalance);
+            myBalance -= amountAns.amount;
+            console.log(`${amountAns.amount} Withdraw Successfully`);
+            console.log(`Your Remaining balance is ${myBalance}`);
         }
+    }
+    else if (operationAns.operation === "Check Balance") {
+        console.log(`Your Account Balance is ${myBalance}`);
     }
 }
 else {
-    console.log("your pin is incorrect");
+    console.log("Incorrect Pin, Try Again");
 }
