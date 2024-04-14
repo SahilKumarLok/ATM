@@ -3,8 +3,6 @@ import inquirer from "inquirer";
 // Initialize user balance and pin code
 let myBalance = 10000;
 let myPinCode = 12345;
-// Print welcome message
-console.log("welcome");
 let pinAnswer = await inquirer.prompt([
     {
         name: "pin",
@@ -43,7 +41,7 @@ if (pinAnswer.pin === myPinCode) {
             console.log(`Your Remaining balance is ${myBalance}`);
         }
     }
-    else if (operationAns.operation === "Check Balance") {
+    else if (operationAns.operation === "Check Amount") {
         console.log(`Your Account Balance is ${myBalance}`);
     }
 }

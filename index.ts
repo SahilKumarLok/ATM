@@ -5,9 +5,6 @@ import inquirer from "inquirer";
 let myBalance: number = 10000;
 let myPinCode: number = 12345;
 
-// Print welcome message
-console.log("welcome");
-
 let pinAnswer = await inquirer.prompt([
     {
         name: "pin",
@@ -47,7 +44,7 @@ if (pinAnswer.pin === myPinCode) {
             console.log(`${amountAns.amount} Withdraw Successfully`);
             console.log(`Your Remaining balance is ${myBalance}`);
         }
-    } else if (operationAns.operation === "Check Balance") {
+    } else if (operationAns.operation === "Check Amount") {
         console.log(`Your Account Balance is ${myBalance}`);
     }
 } else {
